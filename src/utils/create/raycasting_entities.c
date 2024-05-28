@@ -10,6 +10,7 @@
 entity_t *add_entity (char *texture_path, sfVector2f position,
 sfIntRect dimensions, int map_id)
 {
+    (void)map_id;
     entity_t *entity = malloc(sizeof(entity_t));
     if (entity == NULL)
         return NULL;

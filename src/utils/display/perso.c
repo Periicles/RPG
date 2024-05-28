@@ -5,6 +5,8 @@
 ** perso
 */
 
+#include <math.h>
+
 #include "game.h"
 
 int is_colliding(game_t *game, sfVector2f pos, sfVector2f offset);

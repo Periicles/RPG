@@ -75,9 +75,9 @@ void define_wall_y (game_t *game, float i)
 
 void define_wall (game_t *game, float i)
 {
-    raycast_map_t map = game->raycasting->maps[game->raycasting->selected_map];
-    int x_detect = game->raycasting->rays[(int) i]->x_detect;
-    int y_detect = game->raycasting->rays[(int) i]->y_detect;
+    // raycast_map_t map = game->raycasting->maps[game->raycasting->selected_map];
+    // int x_detect = game->raycasting->rays[(int) i]->x_detect;
+    // int y_detect = game->raycasting->rays[(int) i]->y_detect;
 
     int wall_orientation = check_wall_orientation(game, i);
 
