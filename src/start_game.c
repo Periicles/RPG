@@ -10,13 +10,15 @@
 void create_game(game_t *game);
 void events_window(game_t *game);
 void display_all(game_t *game);
-int raycasting (game_t *game);
+int raycasting(game_t *game);
 
 static void init_game(game_t *game)
 {
     game->keys = malloc(sizeof(keys_t));
-    game->keys->up = sfKeyUp; game->keys->down = sfKeyDown;
-    game->keys->left = sfKeyLeft; game->keys->right = sfKeyRight;
+    game->keys->up = sfKeyUp;
+    game->keys->down = sfKeyDown;
+    game->keys->left = sfKeyLeft;
+    game->keys->right = sfKeyRight;
     game->keys->escape = sfKeyEscape;
     game->keys->space = sfKeySpace;
     game->keys->interact = sfKeyE;
@@ -47,7 +49,6 @@ int start_game(game_t *game)
     init_game(game);
     init_params(game);
     create_game(game);
-
     while (sfRenderWindow_isOpen(game->window->window)) {
         if (game->is_raycasting == false) {
             events_window(game);

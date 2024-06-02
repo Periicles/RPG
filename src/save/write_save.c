@@ -5,12 +5,12 @@
 ** write_save
 */
 
-#include "game.h"
-#include<unistd.h>
 #include "fcntl.h"
-#include <sys/stat.h>
-#include <stdlib.h>
+#include "game.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <unistd.h>
 int my_strlen(char const *str);
 int my_put_nbr(int valeur, int fd);
 int my_float(int prec, double n, int fd);
