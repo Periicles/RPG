@@ -6,8 +6,7 @@
 */
 
 #include "game.h"
-
-void go_back(game_t *game);
+#include "create.h"
 
 void create_go_back(game_t *game)
 {
