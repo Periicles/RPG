@@ -18,7 +18,6 @@ int my_getnbr(char const *str);
 char *my_itoa(int nb);
 char *my_strcat(char *dest, char const *src);
 char *my_strndup(char *str, int n);
-char *my_strdup(char *src);
 char **my_str_to_word_array(char *str, char const separator);
 int free_tab(char **tab);
 int my_putchar(char c, int fd);
