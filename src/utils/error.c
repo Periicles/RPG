@@ -4,17 +4,31 @@
 ** File description:
 ** error
 */
-#include <stdbool.h>
-#include <unistd.h>
 
-int my_strncmp(char const *s1, char const *s2, int n);
-int my_strcmp(char const *s1, char const *s2);
+#include <stdbool.h>
+#include "my_str.h"
+
+#ifdef __APPLE__
 
 bool is_error(const char **env)
 {
-    // On macOS and other systems, DISPLAY is not required for native graphics
-    // DISPLAY is only needed for X11 compatibility on Linux
-    // Return false (no error) by default for native graphics systems
-    (void)env;  // Suppress unused parameter warning
+    (void)env;
     return false;
 }
+
+#else
+
+bool is_error(const char **env)
+{
+    int i = 0;
+
+    if (env == NULL)
+        return true;
+    for (i = 0; env[i] != NULL; i++) {
+        if (my_strncmp(env[i], "DISPLAY=", 8) == 0)
+            return false;
+    }
+    return true;
+}
+
+#endif
