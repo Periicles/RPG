@@ -35,5 +35,7 @@ void display_window_buttons(game_t *game);
 void display_charracter(game_t *game);
 void display_quest(game_t *game);
 void display_go_back(game_t *game);
+int diplay_text(game_t *game, char *str);
+void relase_button(buttons_t **button, int i, int max);
 
 #endif /* !DISPLAY_H_ */
