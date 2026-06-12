@@ -8,6 +8,8 @@
 #ifndef MY_STR_H_
     #define MY_STR_H_
 
+    #include <stddef.h>
+
 int my_strlen(char const *str);
 int my_tablen(char **tab);
 int my_strcmp(char const *s1, char const *s2);
