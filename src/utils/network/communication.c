@@ -27,7 +27,7 @@ void send_player_position (game_t *game)
 void receive_clients_infos (game_t *game)
 {
     sfPacket *packet = sfPacket_create();
-    sfBool done = sfFalse;
+    bool done = false;
 
     while (!done) {
         if (sfTcpSocket_receivePacket(game->network->server, packet)
@@ -45,7 +45,7 @@ void receive_clients_infos (game_t *game)
 
             sfPacket_clear(packet);
         } else
-            done = sfTrue;
+            done = true;
     }
     sfPacket_destroy(packet);
 }

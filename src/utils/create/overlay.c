@@ -35,7 +35,7 @@ void create_overlay(game_t *game)
     game->overlay->life->sprite =
         sfSprite_create(game->overlay->life->texture);
     sfSprite_setTexture(game->overlay->life->sprite,
-        game->overlay->life->texture, sfTrue);
+        game->overlay->life->texture, true);
     sfSprite_setPosition(game->overlay->life->sprite,
         (sfVector2f){game->params->window_size.x - 120, 30});
     create_strength(game);

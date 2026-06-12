@@ -19,12 +19,12 @@ void create_window(game_t *game)
     game->window->view = sfView_createFromRect(
         (sfFloatRect){.position = {0, 0}, .size = {1920, 1080}});
     sfRenderWindow_setFramerateLimit(game->window->window, 3000);
-    sfRenderWindow_setVerticalSyncEnabled(game->window->window, sfTrue);
+    sfRenderWindow_setVerticalSyncEnabled(game->window->window, true);
     sfRenderWindow_setView(game->window->window, game->window->view);
     game->window->song = malloc(sizeof(song_t));
     game->window->song->music =
         sfMusic_createFromFile("assets/songs/main.ogg");
-    sfMusic_setLooping(game->window->song->music, sfTrue);
+    sfMusic_setLooping(game->window->song->music, true);
     sfMusic_setVolume(game->window->song->music, game->params->volume);
     sfMusic_play(game->window->song->music);
 }

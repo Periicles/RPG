@@ -28,7 +28,7 @@ static void create_each_npc(game_t *game, int i)
     game->npc[i]->texture = sfTexture_createFromFile("assets/imgs/npc.png",
         NULL);
     game->npc[i]->sprite = sfSprite_create(game->npc[i]->texture);
-    sfSprite_setTexture(game->npc[i]->sprite, game->npc[i]->texture, sfTrue);
+    sfSprite_setTexture(game->npc[i]->sprite, game->npc[i]->texture, true);
     game->npc[i]->pos = NPC_POS[i];
     game->npc[i]->rect = NPC_RECT[i];
     sfSprite_setTextureRect(game->npc[i]->sprite, game->npc[i]->rect);
@@ -37,7 +37,7 @@ static void create_each_npc(game_t *game, int i)
     game->npc[i]->time = sfClock_getElapsedTime(game->npc[i]->clock);
     game->npc[i]->seconds = game->npc[i]->time.microseconds / 1000000.0;
     game->npc[i]->distance_to_player = 0;
-    game->npc[i]->state = None;
+    game->npc[i]->state = NPC_NONE;
     game->npc[i]->dialog_index = NPC_DIALOG[i];
 }
 

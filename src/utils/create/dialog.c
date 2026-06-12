@@ -64,7 +64,7 @@ void create_dialog(game_t *game)
     game->dialogs->texture = sfTexture_createFromFile("assets/imgs/dialog.png",
         NULL);
     game->dialogs->sprite = sfSprite_create(game->dialogs->texture);
-    sfSprite_setTexture(game->dialogs->sprite, game->dialogs->texture, sfTrue);
+    sfSprite_setTexture(game->dialogs->sprite, game->dialogs->texture, true);
     sfSprite_setTextureRect(game->dialogs->sprite, rect);
     pos.x = game->params->window_size.x / 2
         - sfTexture_getSize(game->dialogs->texture).x * 4 / 2;

@@ -16,14 +16,6 @@
     #include <stdlib.h>
     #include <stdbool.h>
 
-    #ifndef SFBOOL_DEFINED
-        typedef enum {
-            sfFalse = 0,
-            sfTrue = 1
-        } sfBool;
-        #define SFBOOL_DEFINED
-    #endif
-
     #define EPITECH_ERROR 84
     #define EPITECH_SUCCESS 0
 

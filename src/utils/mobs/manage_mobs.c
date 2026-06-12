@@ -31,15 +31,15 @@ static void change_ennemi_status(game_t *game, int i)
 {
     mobs_t *mob = game->mobs[i];
 
-    if (mob->state != Attacking && mob->distance_to_player < 300)
-        mob->state = Attacking;
-    if (mob->state == Attacking && mob->distance_to_player > 500)
-        mob->state = Neutral;
+    if (mob->state != ATTACKING && mob->distance_to_player < 300)
+        mob->state = ATTACKING;
+    if (mob->state == ATTACKING && mob->distance_to_player > 500)
+        mob->state = NEUTRAL;
 }
 
 static void reward_kill(game_t *game, mobs_t *mob)
 {
-    mob->is_alive = sfFalse;
+    mob->is_alive = false;
     game->perso->combat->defense += 1;
     game->perso->combat->life += 10;
     game->perso->combat->attack += 3;
@@ -104,9 +104,9 @@ static void attack_player(game_t *game, int i, const sfVector2f *mob_pos)
     sfVector2f offset = {game->perso->pos.x + 22 - mob_pos->x,
         game->perso->pos.y + 25 - mob_pos->y};
 
-    if (mob->state == Attacking && mob->distance_to_player > 50)
+    if (mob->state == ATTACKING && mob->distance_to_player > 50)
         move_ennemi(game, i, &offset, mob_pos);
-    if (mob->state == Attacking && mob->distance_to_player < 70
+    if (mob->state == ATTACKING && mob->distance_to_player < 70
         && sfClock_getElapsedTime(mob->clock).microseconds / 1000000.0 > 1.0) {
         game->perso->combat->life -= game->perso->combat->defense;
         sfClock_restart(mob->clock);
@@ -119,7 +119,7 @@ void manage_mobs(game_t *game)
     int i = 0;
 
     for (i = 0; game->mobs[i] != NULL; i++) {
-        if (game->mobs[i]->is_alive == sfFalse)
+        if (game->mobs[i]->is_alive == false)
             continue;
         mob_pos = update_and_draw_ennemy(game, i);
         change_ennemi_status(game, i);

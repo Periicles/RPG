@@ -35,7 +35,7 @@ network_t *connect_to_server (void)
 {
     network_t *network = malloc(sizeof(network_t));
     network->server = sfTcpSocket_create();
-    sfTcpSocket_setBlocking(network->server, sfFalse);
+    sfTcpSocket_setBlocking(network->server, false);
 
     if (sfTcpSocket_connect(network->server, sfIpAddress_fromString
     ("142.93.35.112"), 6060, sfSeconds(2)) == sfSocketError) {

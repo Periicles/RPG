@@ -24,7 +24,7 @@ static void add_img(game_t *game, int i)
     if (stat(path, &st) == 0) {
         game->save->view->texture[i] = sfTexture_createFromFile(path, NULL);
         sfRectangleShape_setTexture(game->save->view->rect[i],
-            game->save->view->texture[i], sfTrue);
+            game->save->view->texture[i], true);
         sfRectangleShape_setFillColor(game->save->view->rect[i],
             (sfColor){255, 255, 255, 255});
     } else {

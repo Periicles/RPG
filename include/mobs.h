@@ -11,8 +11,8 @@
     #include "rpg.h"
 
 enum mob_state {
-    Neutral = 0,
-    Attacking = 1,
+    NEUTRAL = 0,
+    ATTACKING = 1,
 };
 
 typedef struct combat_s {
@@ -29,7 +29,7 @@ typedef struct {
     float speed;
     sfSprite *sprite;
     sfIntRect TextureRect;
-    sfBool is_alive;
+    bool is_alive;
     mob_combat_t *combat;
     int mob_type;
     int left_display;

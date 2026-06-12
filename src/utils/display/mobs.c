@@ -17,7 +17,7 @@ void display_mobs(game_t *game)
         return;
     manage_mobs(game);
     for (i = 0; game->mobs[i] != NULL; i++) {
-        if (game->mobs[i]->is_alive == sfFalse)
+        if (game->mobs[i]->is_alive == false)
             continue;
         sfRenderWindow_drawSprite(game->window->window,
             game->mobs[i]->sprite, NULL);

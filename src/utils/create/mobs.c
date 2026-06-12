@@ -42,8 +42,8 @@ static void init_mob_stats(game_t *game, int idx, const sfIntRect *rect,
     game->mobs[idx]->clock = sfClock_create();
     game->mobs[idx]->clock_anime = sfClock_create();
     game->mobs[idx]->speed = 2;
-    game->mobs[idx]->is_alive = sfTrue;
-    game->mobs[idx]->state = Neutral;
+    game->mobs[idx]->is_alive = true;
+    game->mobs[idx]->state = NEUTRAL;
     game->mobs[idx]->TextureRect = *rect;
     game->mobs[idx]->sprite = sfSprite_create(texture);
     game->mobs[idx]->combat = malloc(sizeof(mob_combat_t));

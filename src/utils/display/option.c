@@ -34,7 +34,7 @@ static void display_button_bg(game_t *game, int i, const sfVector2i *mpos)
         && mpos->y <= pos.y + 50) {
         sfRectangleShape_setFillColor(button[i]->rect,
             (sfColor){25, 118, 210, 150});
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
+        if (sfMouse_isButtonPressed(sfMouseLeft) == true)
             active_button(game, i);
     } else
         sfRectangleShape_setFillColor(button[i]->rect,
