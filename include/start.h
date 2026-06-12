@@ -8,7 +8,7 @@
 #ifndef START_H_
     #define START_H_
 
-    #include "game.h"
+    typedef struct game_s game_t;
 
 void exit_start_all(game_t *game);
 void close_start_all(game_t *game);

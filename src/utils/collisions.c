@@ -10,12 +10,14 @@
 int is_colliding_horizontaly (game_t *game, sfVector2f pos, sfVector2f offset)
 {
     sfColor color = sfImage_getPixel(game->map->colls_image,
-    pos.x / 3 + game->map->rect.left, pos.y / 3 + game->map->rect.top);
+    (sfVector2u){(unsigned)(pos.x / 3 + game->map->rect.position.x),
+    (unsigned)(pos.y / 3 + game->map->rect.position.y)});
     if (color.r == 0 && color.g == 0 && color.b == 0)
         return -1;
 
-    color = sfImage_getPixel(game->map->colls_image, (pos.x + offset.x) / 3 +
-    game->map->rect.left, (pos.y + offset.y) / 3 + game->map->rect.top);
+    color = sfImage_getPixel(game->map->colls_image,
+    (sfVector2u){(unsigned)((pos.x + offset.x) / 3 + game->map->rect.position.x),
+    (unsigned)((pos.y + offset.y) / 3 + game->map->rect.position.y)});
     if (color.r == 0 && color.g == 0 && color.b == 0)
         return -1;
 
@@ -25,14 +27,14 @@ int is_colliding_horizontaly (game_t *game, sfVector2f pos, sfVector2f offset)
 int is_colliding_verticaly (game_t *game, sfVector2f pos, sfVector2f offset)
 {
     sfColor color = sfImage_getPixel(game->map->colls_image,
-    pos.x / 3 + game->map->rect.left, (pos.y + offset.y) / 3 +
-    game->map->rect.top);
+    (sfVector2u){(unsigned)(pos.x / 3 + game->map->rect.position.x),
+    (unsigned)((pos.y + offset.y) / 3 + game->map->rect.position.y)});
     if (color.r == 0 && color.g == 0 && color.b == 0)
         return -1;
 
     color = sfImage_getPixel(game->map->colls_image,
-    (pos.x + offset.x) / 3 + game->map->rect.left, pos.y / 3 +
-    game->map->rect.top);
+    (sfVector2u){(unsigned)((pos.x + offset.x) / 3 + game->map->rect.position.x),
+    (unsigned)(pos.y / 3 + game->map->rect.position.y)});
     if (color.r == 0 && color.g == 0 && color.b == 0)
         return -1;
 

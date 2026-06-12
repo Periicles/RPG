@@ -16,8 +16,9 @@ sfVector2f set_vector_speed (sfVector2f vec, float speed);
 void move_ennemy_while_colliding (game_t *game, int mob_index,
 sfVector2f offset, sfVector2f mob_pos)
 {
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
+    sfVector2f mob_dim = (sfVector2f) {
+    game->mobs[mob_index]->TextureRect.size.x,
+    game->mobs[mob_index]->TextureRect.size.y};
 
     if (is_colliding(game, (sfVector2f) {mob_pos.x + offset.x, mob_pos.y},
     mob_dim) && !is_colliding(game, (sfVector2f) {mob_pos.x , mob_pos.y +
@@ -72,8 +73,9 @@ sfVector2f mob_pos)
     if (is_mob_colliding_with_other_mob(game, mob_index, offset))
         return;
 
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
+    sfVector2f mob_dim = (sfVector2f) {
+    game->mobs[mob_index]->TextureRect.size.x,
+    game->mobs[mob_index]->TextureRect.size.y};
 
     if (!is_colliding(game, (sfVector2f) {mob_pos.x + offset.x
     , mob_pos.y + offset.y }, mob_dim)) {

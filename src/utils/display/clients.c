@@ -6,8 +6,8 @@
 */
 
 #include "game.h"
-#include <SFML/Graphics/Types.h>
-#include <SFML/System/Vector2.h>
+#include <CSFML/Graphics/Types.h>
+#include <CSFML/System/Vector2.h>
 
 void receive_clients_infos (game_t *game);
 void send_player_position (game_t *game);

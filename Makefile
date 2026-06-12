@@ -130,9 +130,12 @@ SRC = src/main.c \
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
-		-lcsfml-system -lcsfml-audio -lcsfml-network \
-		-lcsfml-system -lcsfml-audio -lm
+CFLAGS = -I include/ -I/opt/homebrew/opt/csfml/include \
+		-I/opt/homebrew/include -I/usr/local/include \
+		-Wall -Wextra -L/opt/homebrew/opt/csfml/lib \
+		-L/opt/homebrew/lib -L/usr/local/lib \
+		-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio \
+		-lcsfml-network -lcsfml-system -lcsfml-audio -lm
 
 NAME = my_rpg
 

@@ -8,7 +8,7 @@
 #ifndef GAME_FUNCTIONS_H_
     #define GAME_FUNCTIONS_H_
 
-    #include "game.h"
+    typedef struct game_s game_t;
 
 void change_to_inventory(game_t *game);
 void change_to_character(game_t *game);

@@ -21,7 +21,7 @@ static void create_buttons(game_t *game, buttons_t *buttons,
     sfRectangleShape_setFillColor(buttons->rect,
         sfColor_fromRGBA(46, 29, 26, 255));
     sfFont *font = sfFont_createFromFile("assets/fonts/dialog.ttf");
-    buttons->text = sfText_create();
+    buttons->text = sfText_create(font);
     sfText_setString(buttons->text, names);
     sfText_setFont(buttons->text, font);
     sfText_setCharacterSize(buttons->text, 30);

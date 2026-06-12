@@ -13,13 +13,13 @@ void display_go_back(game_t *game)
     sfVector2f pos = game->go_back->pos;
     if (mpos.x >= pos.x && mpos.x <= pos.x + 102 &&
         mpos.y >= pos.y && mpos.y <= pos.y + 105) {
-        game->go_back->rect_text.left = 110;
+        game->go_back->rect_text.position.x = 110;
         sfSprite_setTextureRect(game->go_back->sprite,
             game->go_back->rect_text);
         (sfMouse_isButtonPressed(sfMouseLeft)) ?
             game->go_back->callback(game) : 0;
     } else {
-        game->go_back->rect_text.left = 8;
+        game->go_back->rect_text.position.x = 8;
         sfSprite_setTextureRect(game->go_back->sprite,
             game->go_back->rect_text);
     }

@@ -33,7 +33,8 @@ void create_overlay(game_t *game)
 
     game->overlay->life->texture =
         sfTexture_createFromFile("assets/imgs/life.png", NULL);
-    game->overlay->life->sprite = sfSprite_create();
+    game->overlay->life->sprite =
+        sfSprite_create(game->overlay->life->texture);
     sfSprite_setTexture(game->overlay->life->sprite,
         game->overlay->life->texture, sfTrue);
     sfSprite_setPosition(game->overlay->life->sprite,

@@ -97,10 +97,10 @@ void display_window_buttons(game_t *game)
         game->params->visu->windows->size[1]->state = ACTIVE;
     }
 
-    if (game->params->mode.width == 1920 && game->params->mode.height == 1080) {
+    if (game->params->mode.size.x == 1920 && game->params->mode.size.y == 1080) {
         game->params->visu->windows->resolution[0]->state = ACTIVE;
-    } else if (game->params->mode.width == 1280 &&
-        game->params->mode.height == 720) {
+    } else if (game->params->mode.size.x == 1280 &&
+        game->params->mode.size.y == 720) {
         game->params->visu->windows->resolution[1]->state = ACTIVE;
     } else {
         game->params->visu->windows->resolution[2]->state = ACTIVE;

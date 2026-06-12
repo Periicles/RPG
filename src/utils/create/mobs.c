@@ -9,7 +9,7 @@
 
 void add_type(game_t *game, int i, sfIntRect texture_rec)
 {
-    if (texture_rec.width == 50) {
+    if (texture_rec.size.x == 50) {
         game->mobs[i]->mob_type = 1;
         game->mobs[i]->combat->life = 100;
         game->mobs[i]->left_display = 52;
@@ -36,7 +36,7 @@ sfTexture *texture)
     game->mobs[mob_index]->is_alive = sfTrue;
     game->mobs[mob_index]->state = Neutral;
     game->mobs[mob_index]->TextureRect = texture_rec;
-    game->mobs[mob_index]->sprite = sfSprite_create();
+    game->mobs[mob_index]->sprite = sfSprite_create(texture);
     game->mobs[mob_index]->combat = malloc(sizeof(mob_combat_t));
     game->mobs[mob_index]->combat->attack = rand() % 5 + 8;
     game->mobs[mob_index]->combat->life = rand() % 10 + 20;
@@ -61,7 +61,8 @@ void create_second_zone_mobs(game_t *game, sfIntRect betterfly,
     add_mob(game, (sfVector2f) {2170, 1300}, betterfly, texture);
     add_mob(game, (sfVector2f) {1330, 1250}, betterfly, texture);
 
-    add_mob(game, (sfVector2f) {2190, 300}, (sfIntRect) {205, 0, 50, 70},
+    add_mob(game, (sfVector2f) {2190, 300},
+        (sfIntRect) {.position = {205, 0}, .size = {50, 70}},
         texture);
     add_mob(game, (sfVector2f) {2030, 495}, betterfly, texture);
     add_mob(game, (sfVector2f) {1990, 220}, betterfly, texture);
@@ -75,7 +76,7 @@ void create_mobs (game_t *game)
     game->mobs[0] = NULL;
 
     sfTexture *texture = sfTexture_createFromFile("assets/imgs/mobs.png", NULL);
-    sfIntRect betterfly = {5, 70, 33, 40};
+    sfIntRect betterfly = {.position = {5, 70}, .size = {33, 40}};
 
     add_mob(game, (sfVector2f) {1000, 1300}, betterfly, texture);
     add_mob(game, (sfVector2f) {1160, 1100}, betterfly, texture);

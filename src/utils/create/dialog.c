@@ -24,8 +24,8 @@ static void put_dialog(game_t *game)
 
 static void create_text(game_t *game)
 {
-    game->dialogs->text = sfText_create();
     game->dialogs->font = sfFont_createFromFile("assets/fonts/dialog.ttf");
+    game->dialogs->text = sfText_create(game->dialogs->font);
     game->dialogs->pos = (sfVector2f){
         game->params->window_size.x / 3,
         game->params->window_size.y / 1.43};
@@ -39,7 +39,7 @@ static void create_text(game_t *game)
     sfText_setFont(game->dialogs->text, game->dialogs->font);
     sfText_setCharacterSize(game->dialogs->text, 15);
     sfText_setPosition(game->dialogs->text, game->dialogs->pos);
-    sfText_setColor(game->dialogs->text, sfWhite);
+    sfText_setFillColor(game->dialogs->text, sfWhite);
 }
 
 void create_dialog(game_t *game)
@@ -48,8 +48,8 @@ void create_dialog(game_t *game)
     create_text(game);
     game->dialogs->texture = sfTexture_createFromFile("assets/imgs/dialog.png",
         NULL);
-    sfIntRect rect = {.left = 0, .top = 0, .width = 260, .height = 60};
-    game->dialogs->sprite = sfSprite_create();
+    sfIntRect rect = {.position = {0, 0}, .size = {260, 60}};
+    game->dialogs->sprite = sfSprite_create(game->dialogs->texture);
     sfSprite_setTexture(game->dialogs->sprite, game->dialogs->texture, sfTrue);
     sfSprite_setTextureRect(game->dialogs->sprite, rect);
     sfSprite_setPosition(game->dialogs->sprite, (sfVector2f){

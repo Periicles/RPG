@@ -5,9 +5,9 @@
 ** raycasting
 */
 
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/Window/Keyboard.h>
+#include <CSFML/Graphics/RenderWindow.h>
+#include <CSFML/Graphics/Types.h>
+#include <CSFML/Window/Keyboard.h>
 #include <math.h>
 #include "game.h"
 
@@ -21,7 +21,7 @@ void draw_entity(game_t *game, entity_t *entity)
     calculate_entity_form(game, entity);
 
     sfSprite_setPosition(entity->sprite, (sfVector2f) {entity->angle * entity->
-    depth, ((game->params->mode.height - entity->form_height) / 2) + game->
+    depth, ((game->params->mode.size.y - entity->form_height) / 2) + game->
     raycasting->player->pitch});
 
     sfSprite_setOrigin(entity->sprite, (sfVector2f) {(float) 960 / 2,

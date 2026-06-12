@@ -11,7 +11,7 @@ static void create_iso_map(game_t *game)
 {
     game->map->iso_texture =
         sfTexture_createFromFile("assets/imgs/iso3.png", NULL);
-    game->map->iso_sprite = sfSprite_create();
+    game->map->iso_sprite = sfSprite_create(game->map->iso_texture);
 
     sfSprite_setTexture(game->map->iso_sprite, game->map->iso_texture, sfTrue);
     sfSprite_setTextureRect(game->map->iso_sprite, game->map->rect);
@@ -22,17 +22,18 @@ static void create_iso_map(game_t *game)
 void create_map(game_t *game)
 {
     game->map = malloc(sizeof(map_t));
-    game->map->rect = (sfIntRect){.left = 0, .top = 0,
-        .width = game->params->window_size.x / 3,
-        .height = game->params->window_size.y / 3
+    game->map->rect = (sfIntRect){
+        .position = {0, 0},
+        .size = {game->params->window_size.x / 3,
+            game->params->window_size.y / 3}
     };
 
     game->map->texture = sfTexture_createFromFile("assets/imgs/map.png", NULL);
-    game->map->sprite = sfSprite_create();
+    game->map->sprite = sfSprite_create(game->map->texture);
 
     sfSprite_setTexture(game->map->sprite, game->map->texture, sfTrue);
-    game->map->rect.left += game->map->rect.width / 2;
-    game->map->rect.top += game->map->rect.height * 3;
+    game->map->rect.position.x += game->map->rect.size.x / 2;
+    game->map->rect.position.y += game->map->rect.size.y * 3;
     sfSprite_setTextureRect(game->map->sprite, game->map->rect);
     sfSprite_setPosition(game->map->sprite, (sfVector2f){0, 0});
     sfSprite_setScale(game->map->sprite, (sfVector2f){3, 3});

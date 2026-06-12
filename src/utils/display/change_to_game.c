@@ -38,7 +38,7 @@ void change_to_game(game_t *game)
 
         game->window->song->music = sfMusic_createFromFile(
             "assets/songs/overworld.ogg");
-        sfMusic_setLoop(game->window->song->music, sfTrue);
+        sfMusic_setLooping(game->window->song->music, sfTrue);
         sfMusic_setVolume(game->window->song->music, game->params->volume);
         sfMusic_play(game->window->song->music);
 

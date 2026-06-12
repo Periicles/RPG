@@ -5,7 +5,7 @@
 ** free2
 */
 #include "game.h"
-#include <SFML/Graphics/Text.h>
+#include <CSFML/Graphics/Text.h>
 
 void free_navbar(game_t *game)
 {

@@ -13,7 +13,7 @@ static void create_start_buttons(buttons_t *button, sfIntRect *rect,
     button->texture =
     sfTexture_createFromFile("assets/imgs/button.png",NULL);
 
-    button->sprite = sfSprite_create();
+    button->sprite = sfSprite_create(button->texture);
     sfSprite_setTexture(button->sprite, button->texture, sfTrue);
     sfSprite_setPosition(button->sprite,
         (sfVector2f){size.x / 4.3 + (i * 250), size.y / 1.35});
@@ -33,9 +33,12 @@ void create_start_menu(game_t *game)
     sfRectangleShape_setTexture(game->window->rect[0], texture, sfTrue);
 
     game->start = malloc(sizeof(buttons_t *) * 4);
-    sfIntRect *rect[4] = {&(sfIntRect){0, 5, 225, 105},
-        &(sfIntRect){0, 330, 225, 105}, &(sfIntRect){0, 223, 225, 105},
-        &(sfIntRect){0, 115, 225, 105}};
+    sfIntRect *rect[4] = {
+        &(sfIntRect){.position = {0, 5}, .size = {225, 105}},
+        &(sfIntRect){.position = {0, 330}, .size = {225, 105}},
+        &(sfIntRect){.position = {0, 223}, .size = {225, 105}},
+        &(sfIntRect){.position = {0, 115}, .size = {225, 105}}
+    };
     sfVector2u window_size = sfRenderWindow_getSize(game->window->window);
     for (int i = 0; i < 4; i++) {
         game->start[i] = malloc(sizeof(buttons_t));

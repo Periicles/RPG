@@ -43,7 +43,7 @@ static void create_div(game_t *game, int i, char *txt_save)
         (sfColor){62, 39, 35, 255});
     sfRectangleShape_setOutlineThickness(game->save->view->rect[i], 8);
     sfFont *font = sfFont_createFromFile("assets/fonts/dialog.ttf");
-    game->save->view->name[i] = sfText_create();
+    game->save->view->name[i] = sfText_create(font);
     sfText_setString(game->save->view->name[i], txt_save);
     sfText_setFont(game->save->view->name[i], font);
     sfText_setCharacterSize(game->save->view->name[i], 50);
@@ -58,7 +58,8 @@ void create_save_menu(game_t *game)
     game->save->view->rect = malloc(sizeof(sfRectangleShape *) * 3);
     game->save->view->texture = malloc(sizeof(sfTexture *) * 3);
     game->save->view->name = malloc(sizeof(sfText *) * 3);
-    game->save->view->title = sfText_create();
+    sfFont *font = sfFont_createFromFile("assets/fonts/dialog.ttf");
+    game->save->view->title = sfText_create(font);
 
     char *txt_save[3] = {"Save 1", "Save 2", "Save 3"};
 
@@ -66,7 +67,6 @@ void create_save_menu(game_t *game)
         create_div(game, i, txt_save[i]);
         add_img(game, i);
     }
-    sfFont *font = sfFont_createFromFile("assets/fonts/dialog.ttf");
     sfText_setString(game->save->view->title, "Save");
     sfText_setFont(game->save->view->title, font);
     sfText_setCharacterSize(game->save->view->title, 100);

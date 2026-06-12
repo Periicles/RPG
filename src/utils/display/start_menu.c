@@ -13,13 +13,13 @@ static void display_buttons(game_t *game, sfVector2i mpos)
         sfVector2f pos = game->start[i]->pos;
         if (mpos.x >= pos.x && mpos.x <= pos.x + 225 && mpos.y >= pos.y &&
             mpos.y <= pos.y + 105) {
-            game->start[i]->rect_text.left = 5 + 225;
+            game->start[i]->rect_text.position.x = 5 + 225;
             sfSprite_setTextureRect(game->start[i]->sprite,
                 game->start[i]->rect_text);
                 (sfMouse_isButtonPressed(sfMouseLeft)) ?
                 game->start[i]->callback(game) : 0;
         } else {
-            game->start[i]->rect_text.left = 5;
+            game->start[i]->rect_text.position.x = 5;
             sfSprite_setTextureRect(game->start[i]->sprite,
                 game->start[i]->rect_text);
         }

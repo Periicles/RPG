@@ -11,7 +11,7 @@ static void create_each_npc(game_t *game, int i, sfVector2f pos, sfIntRect rect)
 {
     game->npc[i]->texture = sfTexture_createFromFile("assets/imgs/npc.png",
         NULL);
-    game->npc[i]->sprite = sfSprite_create();
+    game->npc[i]->sprite = sfSprite_create(game->npc[i]->texture);
     sfSprite_setTexture(game->npc[i]->sprite, game->npc[i]->texture, sfTrue);
     game->npc[i]->pos = pos;
     game->npc[i]->rect = rect;
@@ -45,10 +45,13 @@ void create_npc(game_t *game)
         (sfVector2f){710, 1350}, (sfVector2f){810, 850},
         (sfVector2f){600, 1288}};
     sfIntRect rect[7] = {
-        (sfIntRect){0, 0, 100, 100}, (sfIntRect){105, 0, 100, 100},
-        (sfIntRect){200, 0, 100, 100}, (sfIntRect){290, 0, 100, 100},
-        (sfIntRect){395, 0, 100, 100}, (sfIntRect){0, 105, 100, 100},
-        (sfIntRect){105, 100, 110, 110}};
+        (sfIntRect){.position = {0, 0}, .size = {100, 100}},
+        (sfIntRect){.position = {105, 0}, .size = {100, 100}},
+        (sfIntRect){.position = {200, 0}, .size = {100, 100}},
+        (sfIntRect){.position = {290, 0}, .size = {100, 100}},
+        (sfIntRect){.position = {395, 0}, .size = {100, 100}},
+        (sfIntRect){.position = {0, 105}, .size = {100, 100}},
+        (sfIntRect){.position = {105, 100}, .size = {110, 110}}};
 
     int dialog_index[7] = {0, 2, 0, 0, 0, 0, 1};
     for (int i = 0; i < 7; i++) {

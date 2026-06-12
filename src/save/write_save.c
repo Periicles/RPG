@@ -24,9 +24,9 @@ void write_params(params_t *params, int fd)
     write(fd, "\n", 1);
     my_put_nbr(params->mode.bitsPerPixel, fd);
     write(fd, "\n", 1);
-    my_put_nbr(params->mode.height, fd);
+    my_put_nbr(params->mode.size.y, fd);
     write(fd, "\n", 1);
-    my_put_nbr(params->mode.width, fd);
+    my_put_nbr(params->mode.size.x, fd);
     write(fd, "\n", 1);
     my_put_nbr(params->resolution.x, fd);
     write(fd, "\n", 1);

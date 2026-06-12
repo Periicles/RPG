@@ -23,7 +23,8 @@ void create_scene(game_t *game, end_t *scene, char *str)
     sfRectangleShape_setFillColor(scene->content,
         sfColor_fromRGBA(85, 61, 51, 255));
     scene->font = sfFont_createFromFile("assets/fonts/dialog.ttf");
-    scene->text = sfText_create(); sfText_setString(scene->text, str);
+    scene->text = sfText_create(scene->font);
+    sfText_setString(scene->text, str);
     sfText_setPosition(scene->text,
         (sfVector2f){game->params->window_size.x / 2.8,
         game->params->window_size.y / 2.4});

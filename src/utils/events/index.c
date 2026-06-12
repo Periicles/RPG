@@ -5,7 +5,7 @@
 ** index
 */
 
-#include <SFML/System/Vector2.h>
+#include <CSFML/System/Vector2.h>
 #include <math.h>
 
 #include "game.h"
@@ -17,8 +17,9 @@ void event_menu(game_t *game);
 
 void go_to_raycasting (game_t *game)
 {
-    sfVector2f player_pos = (sfVector2f) {game->perso->pos.x + (game->map->rect.
-    left * 3), game->perso->pos.y + (game->map->rect.top * 3)};
+    sfVector2f player_pos = (sfVector2f) {game->perso->pos.x +
+    (game->map->rect.position.x * 3), game->perso->pos.y +
+    (game->map->rect.position.y * 3)};
 
     sfVector2f room_pos = (sfVector2f) {2400, 4218};
 

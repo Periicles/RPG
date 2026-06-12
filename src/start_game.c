@@ -6,6 +6,7 @@
 */
 
 #include "game.h"
+#include <stdio.h>
 
 void create_game(game_t *game);
 void events_window(game_t *game);
@@ -41,7 +42,8 @@ static void init_params (game_t *game)
     game->params->fullscreen = 0;
     game->params->resolution = (sfVector2u){1920, 1080};
     game->params->window_size = (sfVector2u){1920, 1080};
-    game->params->mode = (sfVideoMode){1920, 1080, 32};
+    game->params->mode =
+        (sfVideoMode){.size = {1920, 1080}, .bitsPerPixel = 32};
 }
 
 int start_game(game_t *game)
@@ -49,6 +51,8 @@ int start_game(game_t *game)
     init_game(game);
     init_params(game);
     create_game(game);
+    fprintf(stderr, "DEBUG: Checking if window is open: %d\n", 
+        sfRenderWindow_isOpen(game->window->window));
     while (sfRenderWindow_isOpen(game->window->window)) {
         if (game->is_raycasting == false) {
             events_window(game);
@@ -56,6 +60,7 @@ int start_game(game_t *game)
         } else
             raycasting(game);
     }
+    fprintf(stderr, "DEBUG: Window closed, exiting main loop\n");
 
     if (game->network != NULL)
         sfTcpSocket_disconnect(game->network->server);

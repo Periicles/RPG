@@ -10,8 +10,8 @@
 void create_button(buttons_t *button, char *text, int i, game_t *game)
 {
     button->rect = sfRectangleShape_create();
-    button->text = sfText_create();
     button->font = sfFont_createFromFile("assets/fonts/dialog.ttf");
+    button->text = sfText_create(button->font);
     button->pos = (sfVector2f){game->params->window_size.x /
         10 + (i * 200), 20};
     button->size = (sfVector2f){140, 45};

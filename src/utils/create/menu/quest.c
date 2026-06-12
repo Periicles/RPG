@@ -10,11 +10,11 @@
 void create_achievement(game_t *game, quest_t *quest)
 {
     quest->font = sfFont_createFromFile("assets/fonts/dialog.ttf");
-    quest->achievement = sfText_create();
+    quest->achievement = sfText_create(quest->font);
     sfText_setString(quest->achievement, "0-3");
-    sfText_setFont(quest->achievement,quest->font);
+    sfText_setFont(quest->achievement, quest->font);
     sfText_setCharacterSize(quest->achievement, 30);
-    sfText_setColor(quest->achievement, sfWhite);
+    sfText_setFillColor(quest->achievement, sfWhite);
     sfText_setPosition(quest->achievement,
         (sfVector2f){(game->params->window_size.x / 2) + 425,
         (game->params->window_size.y / 2) - 25 + 8.5});

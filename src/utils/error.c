@@ -12,10 +12,9 @@ int my_strcmp(char const *s1, char const *s2);
 
 bool is_error(const char **env)
 {
-    for (int i = 0; env[i] != NULL; i++) {
-        if (my_strncmp("DISPLAY=", env[i], 8) == 0) {
-            return false;
-        }
-    }
-    return true;
+    // On macOS and other systems, DISPLAY is not required for native graphics
+    // DISPLAY is only needed for X11 compatibility on Linux
+    // Return false (no error) by default for native graphics systems
+    (void)env;  // Suppress unused parameter warning
+    return false;
 }

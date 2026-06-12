@@ -24,8 +24,8 @@ void search_wall (game_t *game, float i, float angle_temp)
         y_detect = game->raycasting->player->position.y -
         sin(angle_temp * PI / 180) * d_detect + 1;
 
-        if (map.map[x_detect / (game->params->mode.height / map.width) +
-        y_detect / (game->params->mode.height / map.width) * map.width] != 0) {
+        if (map.map[x_detect / (game->params->mode.size.y / map.width) +
+        y_detect / (game->params->mode.size.y / map.width) * map.width] != 0) {
             game->raycasting->rays[(int) i]->distance = d_detect;
             game->raycasting->rays[(int) i]->x_detect = x_detect;
             game->raycasting->rays[(int) i]->y_detect = y_detect;
@@ -47,7 +47,7 @@ void do_maths (game_t *game, float i)
     distance);
 
     game->raycasting->rays[(int) i]->position = (sfVector2f) {i * game->
-    raycasting->rays[(int) i]->depth, ((game->params->mode.height - game->
+    raycasting->rays[(int) i]->depth, ((game->params->mode.size.y - game->
     raycasting->rays[(int) i]->form_height) / 2) + game->raycasting->
     player->pitch};
 }

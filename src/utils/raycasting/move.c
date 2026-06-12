@@ -11,9 +11,9 @@
 
 static int is_colliding(game_t *game, int x, int y)
 {
-    int pos_in_map = (x + 1) / (game->params->mode.height /
+    int pos_in_map = (x + 1) / (game->params->mode.size.y /
     game->raycasting->maps[game->raycasting->selected_map].width)
-    + (y + 1) / (game->params->mode.height /
+    + (y + 1) / (game->params->mode.size.y /
     game->raycasting->maps[game->raycasting->selected_map].height) *
     game->raycasting->maps[game->raycasting->selected_map].width;
     if (game->raycasting->maps[game->raycasting->selected_map].

@@ -30,7 +30,7 @@
     #include "params_fonctions.h"
     #include "game_functions.h"
 
-typedef struct {
+typedef struct game_s {
     window_t *window;
     map_t *map;
     perso_t *perso;

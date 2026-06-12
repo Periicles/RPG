@@ -6,7 +6,7 @@
 */
 
 #include "game.h"
-#include <SFML/Graphics/Types.h>
+#include <CSFML/Graphics/Types.h>
 int free_tab(char **tab);
 void free_game_menu2(game_t *game);
 void free_save(game_t *game);

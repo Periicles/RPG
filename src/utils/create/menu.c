@@ -15,7 +15,7 @@ int my_strlen(char *str);
 
 sfText *create_text(char *txt, sfVector2f pos, sfFont *font, int size)
 {
-    sfText *text = sfText_create();
+    sfText *text = sfText_create(font);
     sfText_setString(text, txt);
     sfText_setPosition(text, pos);
     sfText_setFont(text, font);

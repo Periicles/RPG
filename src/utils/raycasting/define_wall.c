@@ -15,20 +15,20 @@ int check_wall_orientation (game_t *game, float i)
     int x_detect = game->raycasting->rays[(int) i]->x_detect;
     int y_detect = game->raycasting->rays[(int) i]->y_detect;
 
-    if ((map.map[(x_detect + 1) / (game->params->mode.height / map.width) +
-    y_detect / (game->params->mode.height / map.height) * map.width] == 0 || map
-    .map[(x_detect - 1) / (game->params->mode.height / map.width) + y_detect /
-    (game->params->mode.height / map.height) * map.width] == 0) && (map.map[(
-    x_detect) / (game->params->mode.height / map.width) + (y_detect + 1) / (game
-    ->params->mode.height / map.height) * map.width] != 0 && map.map[(x_detect)
-    / (game->params->mode.height / map.width) + (y_detect - 1) / (game->params->
-    mode.height / map.height) * map.width] != 0))
+    if ((map.map[(x_detect + 1) / (game->params->mode.size.y / map.width) +
+    y_detect / (game->params->mode.size.y / map.height) * map.width] == 0 || map
+    .map[(x_detect - 1) / (game->params->mode.size.y / map.width) + y_detect /
+    (game->params->mode.size.y / map.height) * map.width] == 0) && (map.map[(
+    x_detect) / (game->params->mode.size.y / map.width) + (y_detect + 1) / (game
+    ->params->mode.size.y / map.height) * map.width] != 0 && map.map[(x_detect)
+    / (game->params->mode.size.y / map.width) + (y_detect - 1) / (game->params->
+    mode.size.y / map.height) * map.width] != 0))
         return 1;
 
-    else if ((map.map[(x_detect + 1) / (game->params->mode.height / map.width)
-    + y_detect / (game->params->mode.height / map.height) * map.width] != 0 ||
-    map.map[(x_detect - 1) / (game->params->mode.width / map.width) + y_detect /
-    (game->params->mode.height / map.height) * map.width] != 0))
+    else if ((map.map[(x_detect + 1) / (game->params->mode.size.y / map.width)
+    + y_detect / (game->params->mode.size.y / map.height) * map.width] != 0 ||
+    map.map[(x_detect - 1) / (game->params->mode.size.x / map.width) + y_detect /
+    (game->params->mode.size.y / map.height) * map.width] != 0))
         return 2;
     return 0;
 }
@@ -39,19 +39,19 @@ void define_wall_x (game_t *game, float i)
     int x_detect = game->raycasting->rays[(int) i]->x_detect;
     int y_detect = game->raycasting->rays[(int) i]->y_detect;
 
-    int test1 = map.map[(x_detect + 1) / (game->params->mode.height / map.width)
-    + y_detect / (game->params->mode.height / map.height) * map.width];
-    int test2 = map.map[(x_detect - 1) / (game->params->mode.height / map.width)
-    + y_detect / (game->params->mode.height / map.height) * map.width];
+    int test1 = map.map[(x_detect + 1) / (game->params->mode.size.y / map.width)
+    + y_detect / (game->params->mode.size.y / map.height) * map.width];
+    int test2 = map.map[(x_detect - 1) / (game->params->mode.size.y / map.width)
+    + y_detect / (game->params->mode.size.y / map.height) * map.width];
 
     if (test1 != 0)
         game->raycasting->rays[(int) i]->sprite = test1;
     else
         game->raycasting->rays[(int) i]->sprite = test2;
 
-    game->raycasting->rays[(int) i]->texture_rect = (sfIntRect) {x_detect %
-    (game->params->mode.height / map.width) * 250 /
-    (game->params->mode.height / map.width), 0, 1, 250};
+    game->raycasting->rays[(int) i]->texture_rect = (sfIntRect) {
+    .position = {x_detect % (game->params->mode.size.y / map.width) * 250 /
+    (game->params->mode.size.y / map.width), 0}, .size = {1, 250}};
 
     game->raycasting->rays[(int) i]->brightness = 255;
 }
@@ -63,12 +63,12 @@ void define_wall_y (game_t *game, float i)
     int y_detect = game->raycasting->rays[(int) i]->y_detect;
 
     game->raycasting->rays[(int) i]->sprite = map.map[(x_detect) /
-    (game->params->mode.height / map.width) + (y_detect - 1) /
-    (game->params->mode.height / map.height) * map.width];
+    (game->params->mode.size.y / map.width) + (y_detect - 1) /
+    (game->params->mode.size.y / map.height) * map.width];
 
-    game->raycasting->rays[(int) i]->texture_rect = (sfIntRect) {y_detect %
-    (game->params->mode.height / map.height) * 250 /
-    (game->params->mode.height / map.height), 0, 1, 250};
+    game->raycasting->rays[(int) i]->texture_rect = (sfIntRect) {
+    .position = {y_detect % (game->params->mode.size.y / map.height) * 250 /
+    (game->params->mode.size.y / map.height), 0}, .size = {1, 250}};
 
     game->raycasting->rays[(int) i]->brightness = 200;
 }

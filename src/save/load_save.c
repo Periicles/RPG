@@ -21,8 +21,8 @@ params_t *get_params(params_t *param, char **text, int i)
     param->fps = my_getnbr(text[i]);
     param->fullscreen = my_getnbr(text[i + 1]);
     param->mode.bitsPerPixel = my_getnbr(text[i + 2]);
-    param->mode.height = my_getnbr(text[i + 3]);
-    param->mode.width = my_getnbr(text[i + 4]);
+    param->mode.size.y = my_getnbr(text[i + 3]);
+    param->mode.size.x = my_getnbr(text[i + 4]);
     param->resolution.x = my_getnbr(text[i + 5]);
     param->resolution.y = my_getnbr(text[i + 6]);
     param->scale = my_getnbr(text[i + 7]);

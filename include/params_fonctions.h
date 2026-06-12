@@ -8,7 +8,7 @@
 #ifndef PARAMS_FONCTIONS_H_
     #define PARAMS_FONCTIONS_H_
 
-    #include "game.h"
+    typedef struct game_s game_t;
 
 void set_fullscreen(game_t *game);
 void set_windowed(game_t *game);

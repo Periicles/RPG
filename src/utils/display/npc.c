@@ -13,8 +13,8 @@ int diplay_text(game_t *game, char *str);
 static void get_distance(game_t *game, int i, sfVector2f second_pos)
 {
     game->npc[i]->distance_to_player = sqrt(pow(game->perso->pos.x +
-        (game->npc[i]->rect.width / 2.0) - second_pos.x, 2) +
-        pow(game->perso->pos.y + (game->npc[i]->rect.height / 2.0) -
+        (game->npc[i]->rect.size.x / 2.0) - second_pos.x, 2) +
+        pow(game->perso->pos.y + (game->npc[i]->rect.size.y / 2.0) -
         second_pos.y, 2));
 
     if (game->npc[i]->distance_to_player < 100 &&
@@ -36,8 +36,8 @@ void display_npc(game_t *game)
 
     for (int i = 0; i < 7; i++) {
         sfVector2f second_pos = {(game->npc[i]->pos.x * 3) -
-            (game->map->rect.left * 3), (game->npc[i]->pos.y * 3) -
-            (game->map->rect.top * 3)};
+            (game->map->rect.position.x * 3), (game->npc[i]->pos.y * 3) -
+            (game->map->rect.position.y * 3)};
         get_distance(game, i, second_pos);
         sfSprite_setPosition(game->npc[i]->sprite, second_pos);
         sfRenderWindow_drawSprite(game->window->window,

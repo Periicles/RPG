@@ -19,15 +19,13 @@ sfIntRect dimensions, int map_id)
     entity->position = position;
     entity->dimensions = dimensions;
 
-    entity->sprite = sfSprite_create();
-    if (entity->sprite == NULL)
-        return NULL;
-
     entity->texture = sfTexture_createFromFile(texture_path, 0);
     if (entity->texture == NULL)
         return NULL;
 
-    sfSprite_setTexture(entity->sprite, entity->texture, 0);
+    entity->sprite = sfSprite_create(entity->texture);
+    if (entity->sprite == NULL)
+        return NULL;
 
     return entity;
 }
@@ -39,12 +37,14 @@ int create_entities (game_t *game)
         return -1;
 
     game->raycasting->entities[0] = add_entity("./assets/imgs/elliot.png",
-    (sfVector2f) {500, 500}, (sfIntRect) {0, 0, 50, 50}, 0);
+    (sfVector2f) {500, 500},
+    (sfIntRect) {.position = {0, 0}, .size = {50, 50}}, 0);
     if (game->raycasting->entities[0] == NULL)
         return -1;
 
     game->raycasting->entities[1] = add_entity("./assets/imgs/elliot.png",
-    (sfVector2f) {800, 800}, (sfIntRect) {0, 0, 50, 50}, 0);
+    (sfVector2f) {800, 800},
+    (sfIntRect) {.position = {0, 0}, .size = {50, 50}}, 0);
     if (game->raycasting->entities[1] == NULL)
         return -1;
 
