@@ -125,6 +125,7 @@ SRC = src/main.c \
 			raycasting \
 			sort_walls \
 			get_wall \
+			map_access \
 		) \
 	) \
 

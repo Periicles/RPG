@@ -11,6 +11,7 @@
     #include "game.h"
 
     #define PI 3.14159265358979323846
+    #define MAX_RAY_DEPTH 10000
 
 typedef struct {
     int sprite;
