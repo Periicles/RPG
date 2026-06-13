@@ -6,16 +6,16 @@
 */
 
 #include "game.h"
-#include <stdio.h>
+#include "create.h"
+#include "display.h"
+#include "events.h"
+#include "raycasting_functions.h"
 
-void create_game(game_t *game);
-void events_window(game_t *game);
-void display_all(game_t *game);
-int raycasting(game_t *game);
-
-static void init_game(game_t *game)
+static bool init_keys(game_t *game)
 {
     game->keys = malloc(sizeof(keys_t));
+    if (game->keys == NULL)
+        return false;
     game->keys->up = sfKeyUp;
     game->keys->down = sfKeyDown;
     game->keys->left = sfKeyLeft;
@@ -26,17 +26,30 @@ static void init_game(game_t *game)
     game->keys->inventory = sfKeyI;
     game->keys->pause = sfKeyP;
     game->keys->attack = sfKeyA;
-    game->clock = malloc(sizeof(clocks_t));
-    game->clock->clock = sfClock_create();
-    game->perso = malloc(sizeof(perso_t));
-    game->perso->clock = sfClock_create();
+    return true;
 }
 
-static void init_params (game_t *game)
+static bool init_game(game_t *game)
+{
+    if (init_keys(game) == false)
+        return false;
+    game->clock = malloc(sizeof(clocks_t));
+    if (game->clock == NULL)
+        return false;
+    game->clock->clock = sfClock_create();
+    game->perso = malloc(sizeof(perso_t));
+    if (game->perso == NULL)
+        return false;
+    game->perso->clock = sfClock_create();
+    return true;
+}
+
+static bool init_params(game_t *game)
 {
     game->params = malloc(sizeof(params_t));
+    if (game->params == NULL)
+        return false;
     game->params[0] = (params_t){0};
-    game->params->tmp = 0;
     game->params->volume = 100;
     game->params->fps = 60;
     game->params->fullscreen = 0;
@@ -44,15 +57,14 @@ static void init_params (game_t *game)
     game->params->window_size = (sfVector2u){1920, 1080};
     game->params->mode =
         (sfVideoMode){.size = {1920, 1080}, .bitsPerPixel = 32};
+    return true;
 }
 
 int start_game(game_t *game)
 {
-    init_game(game);
-    init_params(game);
+    if (init_game(game) == false || init_params(game) == false)
+        return EPITECH_ERROR;
     create_game(game);
-    fprintf(stderr, "DEBUG: Checking if window is open: %d\n", 
-        sfRenderWindow_isOpen(game->window->window));
     while (sfRenderWindow_isOpen(game->window->window)) {
         if (game->is_raycasting == false) {
             events_window(game);
@@ -60,10 +72,5 @@ int start_game(game_t *game)
         } else
             raycasting(game);
     }
-    fprintf(stderr, "DEBUG: Window closed, exiting main loop\n");
-
-    if (game->network != NULL)
-        sfTcpSocket_disconnect(game->network->server);
-
-    return (0);
+    return EPITECH_SUCCESS;
 }

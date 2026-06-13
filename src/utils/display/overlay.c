@@ -6,15 +6,14 @@
 */
 
 #include "game.h"
+#include "display.h"
 
 static void display_strength(game_t *game)
 {
     sfRectangleShape_setSize(game->overlay->life->content,
         (sfVector2f){24, (165 * game->perso->combat->strength / 100) * -1});
-
     sfRectangleShape_setPosition(game->overlay->life->content,
         (sfVector2f){game->params->window_size.x - 52, 91 + 165});
-
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->overlay->life->content, NULL);
 }
@@ -36,19 +35,14 @@ void display_overlay(game_t *game)
 {
     if (game->menu < 5 || game->menu > 6)
         return;
-
     sfRenderWindow_drawSprite(game->window->window,
         game->overlay->life->sprite, NULL);
     sfRectangleShape_setSize(game->overlay->life->container,
         (sfVector2f){27, (184 * game->perso->combat->life / 100) * -1});
-
     sfRectangleShape_setPosition(game->overlay->life->container,
         (sfVector2f){game->params->window_size.x - 110, 73 + 184});
-
     change_life_color(game);
-
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->overlay->life->container, NULL);
-
     display_strength(game);
 }

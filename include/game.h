@@ -56,4 +56,8 @@ typedef struct game_s {
     int nb_mob_killed;
 } game_t;
 
+bool is_error(const char **env);
+int start_game(game_t *game);
+void do_free(game_t *game);
+
 #endif /* !GAME_H_ */

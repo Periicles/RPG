@@ -6,8 +6,7 @@
 */
 
 #include "game.h"
-
-void go_back(game_t *game);
+#include "create.h"
 
 void create_go_back(game_t *game)
 {
@@ -15,7 +14,7 @@ void create_go_back(game_t *game)
     game->go_back->texture = sfTexture_createFromFile("assets/imgs/button.png",
         NULL);
     game->go_back->sprite = sfSprite_create(game->go_back->texture);
-    sfSprite_setTexture(game->go_back->sprite, game->go_back->texture, sfTrue);
+    sfSprite_setTexture(game->go_back->sprite, game->go_back->texture, true);
     sfSprite_setPosition(game->go_back->sprite, (sfVector2f){100, 100});
     game->go_back->pos = (sfVector2f){100, 100};
     game->go_back->rect_text = (sfIntRect){

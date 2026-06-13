@@ -125,6 +125,7 @@ SRC = src/main.c \
 			raycasting \
 			sort_walls \
 			get_wall \
+			map_access \
 		) \
 	) \
 
@@ -132,17 +133,20 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -I/opt/homebrew/opt/csfml/include \
 		-I/opt/homebrew/include -I/usr/local/include \
-		-Wall -Wextra -L/opt/homebrew/opt/csfml/lib \
-		-L/opt/homebrew/lib -L/usr/local/lib \
-		-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio \
-		-lcsfml-network -lcsfml-system -lcsfml-audio -lm
+		-Wall -Wextra
+
+LDFLAGS = -L/opt/homebrew/opt/csfml/lib -L/opt/homebrew/lib \
+		-L/usr/local/lib
+
+LDLIBS = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio \
+		-lcsfml-network -lm
 
 NAME = my_rpg
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) $(CFLAGS)
+	gcc -o $(NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 clean:
 	rm -rf $(OBJ)
 

@@ -25,7 +25,7 @@ static void change_item_by_key(game_t *game)
 void change_item(game_t *game)
 {
     if (game->window->event.type == sfEvtMouseWheelScrolled &&
-        sfKeyboard_isKeyPressed(sfKeyLControl) == sfFalse) {
+        sfKeyboard_isKeyPressed(sfKeyLControl) == false) {
         if (game->window->event.mouseWheelScroll.delta > 0) {
             game->inventory->item_selected--;
         }
