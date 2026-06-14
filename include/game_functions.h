@@ -20,13 +20,6 @@ typedef struct game_functions_s {
     void (*function)(game_t *game);
 } game_functions_t;
 
-static const game_functions_t MENU_FLAGS[] = {
-    {.function =&change_to_inventory},
-    {.function =&change_to_character},
-    {.function =&change_to_quest},
-    {.function =&change_to_option},
-    {.function =&exit_start_all},
-    {.function =NULL},
-};
+extern const game_functions_t MENU_FLAGS[];
 
 #endif /* !GAME_FUNCTIONS_H_ */

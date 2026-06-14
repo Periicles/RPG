@@ -9,6 +9,7 @@ SRC = src/main.c \
 	src/utils/error.c \
 	src/start_game.c \
 	src/change_map.c \
+	src/flags.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
 			raycasting \
@@ -143,6 +144,9 @@ LDLIBS = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio \
 
 NAME = my_rpg
 
+TEST_SRC = $(wildcard tests/*.c)
+TEST_NAME = unit_tests
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -155,4 +159,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+tests_run:
+	gcc -o $(TEST_NAME) $(filter-out src/main.c, $(SRC)) $(TEST_SRC) \
+		$(CFLAGS) $(LDFLAGS) $(LDLIBS) -lcriterion
+	./$(TEST_NAME)
+
+.PHONY: all clean fclean re tests_run
