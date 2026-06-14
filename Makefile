@@ -146,6 +146,9 @@ NAME = my_rpg
 
 TEST_SRC = $(wildcard tests/*.c)
 TEST_NAME = unit_tests
+SANITIZE = -g3 -fsanitize=address,undefined
+TEST_BUILD = gcc -o $(TEST_NAME) $(filter-out src/main.c, $(SRC)) \
+		$(TEST_SRC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -lcriterion
 
 all: $(NAME)
 
@@ -155,13 +158,24 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(TEST_NAME)
 
 re: fclean all
 
+debug: CFLAGS += $(SANITIZE)
+debug: LDLIBS += -fsanitize=address,undefined
+debug: re
+
 tests_run:
-	gcc -o $(TEST_NAME) $(filter-out src/main.c, $(SRC)) $(TEST_SRC) \
-		$(CFLAGS) $(LDFLAGS) $(LDLIBS) -lcriterion
+	$(TEST_BUILD)
 	./$(TEST_NAME)
 
-.PHONY: all clean fclean re tests_run
+tests_asan:
+	$(TEST_BUILD) $(SANITIZE)
+	./$(TEST_NAME)
+
+valgrind:
+	$(TEST_BUILD)
+	valgrind --leak-check=full --error-exitcode=1 ./$(TEST_NAME)
+
+.PHONY: all clean fclean re debug tests_run tests_asan valgrind

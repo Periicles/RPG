@@ -19,6 +19,12 @@ static void write_file(const char *path, const char *content)
     fclose(f);
 }
 
+static void free_map(raycast_map_t *m)
+{
+    free(m->map);
+    free(m);
+}
+
 Test(get_map, parses_a_valid_map)
 {
     raycast_map_t *m = NULL;
@@ -30,6 +36,7 @@ Test(get_map, parses_a_valid_map)
     cr_assert_eq(m->height, 2);
     cr_assert_eq(m->map[0], 1);
     cr_assert_eq(m->map[5], 6);
+    free_map(m);
 }
 
 Test(get_map, rejects_malformed_and_missing)
@@ -49,4 +56,5 @@ Test(get_map, truncated_map_zero_fills)
     cr_assert_eq(m->map[0], 7);
     cr_assert_eq(m->map[2], 0);
     cr_assert_eq(m->map[5], 0);
+    free_map(m);
 }

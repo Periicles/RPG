@@ -8,6 +8,7 @@ my_rpg
 *.gcda
 *.gcno
 unit_tests
+*.dSYM/
 
 # Local-only working docs (never commit)
 CLAUDE.md
