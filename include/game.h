@@ -30,7 +30,7 @@
     #include "params_fonctions.h"
     #include "game_functions.h"
 
-typedef struct {
+typedef struct game_s {
     window_t *window;
     map_t *map;
     perso_t *perso;
@@ -55,5 +55,9 @@ typedef struct {
     bool is_finished;
     int nb_mob_killed;
 } game_t;
+
+bool is_error(const char **env);
+int start_game(game_t *game);
+void do_free(game_t *game);
 
 #endif /* !GAME_H_ */

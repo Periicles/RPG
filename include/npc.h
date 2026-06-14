@@ -11,8 +11,8 @@
     #include "rpg.h"
 
 enum npc_state {
-    None = 0,
-    Talking = 1,
+    NPC_NONE = 0,
+    NPC_TALKING = 1,
 };
 
 typedef struct {

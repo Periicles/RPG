@@ -11,7 +11,7 @@
     #include "rpg.h"
 
 enum stats {
-    none,
+    NONE,
     HOVER,
     ACTIVE,
     RELEASE,

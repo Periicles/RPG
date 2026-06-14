@@ -10,6 +10,8 @@
 
     #include "rpg.h"
 
+    #define MAX_CLIENTS 100
+
 typedef struct {
     sfVector2f pos;
     sfIntRect rect;
