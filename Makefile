@@ -9,6 +9,7 @@ SRC = src/main.c \
 	src/utils/error.c \
 	src/start_game.c \
 	src/change_map.c \
+	src/flags.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
 			raycasting \
