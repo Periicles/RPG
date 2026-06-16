@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void draw_slot(game_t *game, int i, const sfVector2i *mpos)
 {
@@ -28,7 +29,7 @@ void display_save(game_t *game)
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
     int i = 0;
 
-    if (game->menu != 3)
+    if (!menu_is_save(game))
         return;
     display_go_back(game);
     sfRenderWindow_drawText(game->window->window,

@@ -7,13 +7,14 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 void display_charracter(game_t *game)
 {
     sfVector2u win = game->params->window_size;
     int i = 0;
 
-    if ((game->menu / 10) % 10 != 6 || (game->menu % 10) != 1)
+    if (!menu_tab_character(game))
         return;
     game->perso->pos = (sfVector2f){win.x / 2 - 100, win.y / 2 - 100};
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);

@@ -8,12 +8,13 @@
 #include "game.h"
 #include "display.h"
 #include "mobs_functions.h"
+#include "menu.h"
 
 void display_mobs(game_t *game)
 {
     int i = 0;
 
-    if (game->menu < 5 || game->menu > 6)
+    if (!menu_show_hud(game))
         return;
     manage_mobs(game);
     for (i = 0; game->mobs[i] != NULL; i++) {

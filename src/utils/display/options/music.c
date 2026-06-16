@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void set_volume(game_t *game, const sfVector2i *mouse,
     const sfVector2f *pos)
@@ -26,7 +27,7 @@ void display_music(game_t *game)
     sfVector2i mouse = sfMouse_getPositionRenderWindow(game->window->window);
     sfVector2f pos = sfRectangleShape_getPosition(music->bar);
 
-    if (game->menu != 21 && game->menu % 10 != 1)
+    if (!menu_tab_music(game))
         return;
     if (mouse.x >= pos.x && mouse.x <= pos.x + 500 && mouse.y >= pos.y
         && mouse.y <= pos.y + 50) {

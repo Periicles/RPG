@@ -9,12 +9,13 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void try_interact(game_t *game, int i)
 {
     quest_t *quest = game->game_menu->quest;
 
-    game->menu = 5;
+    game->menu = MENU_GAME;
     diplay_text(game, game->npc[i]->dialog);
     if (game->npc[i]->dialog_index != 0
         && game->npc[i]->dialog_index > quest->nb_achievement)
@@ -39,7 +40,7 @@ void display_npc(game_t *game)
     sfVector2f second_pos = {0};
     int i = 0;
 
-    if (game->menu < 5 || game->menu >= 10)
+    if (!menu_in_overworld(game))
         return;
     for (i = 0; i < 7; i++) {
         second_pos = (sfVector2f){game->npc[i]->pos.x * 3

@@ -7,15 +7,16 @@
 
 #include "game.h"
 #include "events.h"
+#include "menu.h"
 
 void event_menu(game_t *game)
 {
     if (game->menu < 5)
         exit_start_all(game);
-    if (game->menu < 10 && game->menu >= 5) {
-        game->menu = (game->menu * 10) + 6;
+    if (menu_in_overworld(game)) {
+        menu_push(game, SCREEN_PAUSE);
         return;
     }
-    if (game->menu % 10 == 6 || (game->menu / 10) % 10 == 6)
-        game->menu /= 10;
+    if (menu_pause_open(game) || menu_in_pause_tab(game))
+        menu_pop(game);
 }

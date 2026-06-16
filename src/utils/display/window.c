@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static int show_map(int menu)
 {
@@ -17,7 +18,7 @@ static int show_map(int menu)
 
 void display_window(game_t *game)
 {
-    if (game->menu == 0)
+    if (menu_is_start(game))
         sfRenderWindow_drawRectangleShape(game->window->window,
             game->window->rect[0], NULL);
     else if (game->menu >= 5 && show_map(game->menu))

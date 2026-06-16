@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void active_button(game_t *game, int i)
 {
@@ -62,12 +63,11 @@ void display_menu(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if ((game->menu % 10 != 6 && (game->menu / 10) % 10 != 6)
-        || game->menu >= 563) {
+    if (!menu_pause_active(game)) {
         game->params->tmp = 0;
         return;
     }
-    if (game->menu % 10 == 6)
+    if (menu_pause_open(game))
         relase_button(game->game_menu->sidebar->buttons, 5, 4);
     draw_menu_bg(game);
     if (game->params->tmp == 0) {

@@ -6,10 +6,11 @@
 */
 
 #include "game.h"
+#include "menu.h"
 
 void change_map(game_t *game)
 {
-    if (game->menu == 5) {
+    if (game->menu == MENU_GAME) {
         if (game->perso->pos.x > game->map->rect.size.x * 3 - 32) {
             game->map->rect.position.x += game->map->rect.size.x / 2;
             game->perso->pos.x = (game->map->rect.size.x * 3.0) / 2;

@@ -6,6 +6,7 @@
 */
 
 #include <math.h>
+#include "menu.h"
 
 #include "game.h"
 #include "collisions.h"
@@ -92,7 +93,7 @@ void display_perso(game_t *game)
 {
     perso_t *perso = game->perso;
 
-    if (game->menu < 5 || game->menu >= 10)
+    if (!menu_in_overworld(game))
         return;
     move_player_horizontal(game);
     move_player_vertical(game);

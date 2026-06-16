@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void display_strength(game_t *game)
 {
@@ -33,7 +34,7 @@ static void change_life_color(game_t *game)
 
 void display_overlay(game_t *game)
 {
-    if (game->menu < 5 || game->menu > 6)
+    if (!menu_show_hud(game))
         return;
     sfRenderWindow_drawSprite(game->window->window,
         game->overlay->life->sprite, NULL);
