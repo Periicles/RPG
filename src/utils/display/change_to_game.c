@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void fade_out(game_t *game, float duration)
 {
@@ -31,7 +32,7 @@ static void fade_out(game_t *game, float duration)
 
 void change_to_game(game_t *game)
 {
-    if (game->menu != 4 || game->params->tmp != 0)
+    if (!menu_is_dialog(game) || game->params->tmp != 0)
         return;
     sfMusic_stop(game->window->song->music);
     sfMusic_destroy(game->window->song->music);

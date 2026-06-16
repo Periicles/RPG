@@ -8,12 +8,13 @@
 #include "game.h"
 #include "display.h"
 #include "network_functions.h"
+#include "menu.h"
 
 void display_clients(game_t *game)
 {
     int i = 0;
 
-    if (game->network == NULL || game->menu < 5 || game->menu >= 10)
+    if (game->network == NULL || !menu_in_overworld(game))
         return;
     send_player_position(game);
     receive_clients_infos(game);

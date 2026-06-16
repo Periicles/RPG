@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void replace_bar(game_t *game, item_t *item, int i)
 {
@@ -49,7 +50,7 @@ void display_inventory_menu(game_t *game)
 {
     sfVector2u win = game->params->window_size;
 
-    if ((game->menu / 10) % 10 != 6 || (game->menu % 10) != 0)
+    if (!menu_tab_inventory(game))
         return;
     game->perso->pos = (sfVector2f){win.x / 2 - 100, win.y / 2 - 100};
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);

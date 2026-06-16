@@ -8,6 +8,7 @@
 #include "game.h"
 #include "display.h"
 #include "my_str.h"
+#include "menu.h"
 
 static void unselect_others(game_t *game, int i, int max, char *str)
 {
@@ -108,7 +109,7 @@ void display_window_buttons(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if (game->menu != 24 && game->menu % 10 != 4)
+    if (!menu_tab_window(game))
         return;
     set_active_states(game);
     display_size_buttons(game, &mpos);

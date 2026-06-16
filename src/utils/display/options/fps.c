@@ -8,6 +8,7 @@
 #include "game.h"
 #include "display.h"
 #include "my_str.h"
+#include "menu.h"
 
 static int active_button(game_t *game, int i)
 {
@@ -68,7 +69,7 @@ void display_fps(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if (game->menu != 2 && game->menu != 25 && game->menu % 10 != 0)
+    if (!menu_tab_fps(game))
         return;
     game->params->visu->fps->button[check_button(game)]->state = ACTIVE;
     display_button(game, &mpos);

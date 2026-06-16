@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static int poll_dialog(game_t *game)
 {
@@ -39,8 +40,8 @@ int diplay_text(game_t *game, char *str)
 
 void display_dialog(game_t *game)
 {
-    if (game->menu != 4)
+    if (!menu_is_dialog(game))
         return;
     diplay_text(game, game->dialogs->dialog_text[0]);
-    game->menu = 5;
+    game->menu = MENU_GAME;
 }

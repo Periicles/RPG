@@ -9,6 +9,7 @@
 
 #include "game.h"
 #include "mobs_functions.h"
+#include "menu.h"
 
 static sfVector2f update_and_draw_ennemy(game_t *game, int i)
 {
@@ -49,7 +50,7 @@ static void reward_kill(game_t *game, mobs_t *mob)
         return;
     game->game_menu->quest->nb_achievement += 1;
     game->is_finished = true;
-    game->menu = 42;
+    game->menu = MENU_WIN;
 }
 
 static void win_perso(game_t *game, mobs_t *mob)
@@ -67,7 +68,7 @@ static void win_perso(game_t *game, mobs_t *mob)
     if (game->perso->combat->life <= 0) {
         game->perso->combat->life = 0;
         game->is_finished = true;
-        game->menu = -42;
+        game->menu = MENU_LOSE;
     }
 }
 

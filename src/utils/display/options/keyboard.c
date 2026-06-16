@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void change_keyboard(game_t *game)
 {
@@ -70,7 +71,7 @@ void display_keyboard(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if (game->menu != 22 && game->menu % 10 != 2)
+    if (!menu_tab_keyboard(game))
         return;
     display_button(game, &mpos);
 }

@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 void relase_button(buttons_t **button, int i, int max)
 {
@@ -21,7 +22,7 @@ static void active_button(game_t *game, int i)
 {
     game->params->visu->navbar->button[i]->state = ACTIVE;
     relase_button(game->params->visu->navbar->button, i, 5);
-    game->menu = game->menu / 10 * 10 + i;
+    menu_set_tab(game, i);
     sfSleep((sfTime){100000});
 }
 
@@ -77,10 +78,9 @@ void display_options(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if ((game->menu != 2 && game->menu / 10 != 2)
-        && (game->menu / 10) % 10 != 3)
+    if (!menu_in_settings(game))
         return;
-    if (game->menu == 2 || game->menu / 10 == 2 || game->menu % 10 == 2)
+    if (menu_settings_open(game))
         game->params->visu->navbar->button[0]->state = ACTIVE;
     game->go_back->pos = (sfVector2f){20, 100};
     sfSprite_setPosition(game->go_back->sprite, game->go_back->pos);

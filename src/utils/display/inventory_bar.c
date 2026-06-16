@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void set_item_color(sfRectangleShape *content, sfRectangleShape *cont,
     int selected)
@@ -30,7 +31,7 @@ void display_inventory(game_t *game)
     sfRectangleShape *content = NULL;
     int i = 0;
 
-    if (game->menu < 5 || game->menu > 6)
+    if (!menu_show_hud(game))
         return;
     for (i = 0; i < 3; i++) {
         container = game->inventory->items[i]->container;

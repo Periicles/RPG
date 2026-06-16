@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "display.h"
+#include "menu.h"
 
 static void update_button(game_t *game, int i, const sfVector2i *mpos)
 {
@@ -38,7 +39,7 @@ void display_start_menu(game_t *game)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
 
-    if (game->menu != 0)
+    if (!menu_is_start(game))
         return;
     display_buttons(game, &mpos);
 }

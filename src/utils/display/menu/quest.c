@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include "menu.h"
 
 #include "game.h"
 #include "display.h"
@@ -33,7 +34,7 @@ static void modify_quest(game_t *game)
 
 void display_quest(game_t *game)
 {
-    if ((game->menu / 10) % 10 != 6 || (game->menu % 10) != 2)
+    if (!menu_tab_quest(game))
         return;
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->game_menu->quest->container, NULL);
