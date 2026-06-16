@@ -102,7 +102,7 @@ jobs:
   push_to_mirror:
     runs-on: ubuntu-latest
     needs: [coding_style, build_and_test]
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && vars.MIRROR_URL != ''
     steps:
       - uses: actions/checkout@v3
         with:
