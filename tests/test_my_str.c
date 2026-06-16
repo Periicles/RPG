@@ -7,6 +7,7 @@
 
 #include <criterion/criterion.h>
 #include <limits.h>
+#include <stdlib.h>
 #include "my_str.h"
 
 Test(my_getnbr, parses_and_stops_at_non_digit)
@@ -18,13 +19,21 @@ Test(my_getnbr, parses_and_stops_at_non_digit)
     cr_assert_eq(my_getnbr("0"), 0);
 }
 
+static void check_itoa(int nb, const char *expected)
+{
+    char *str = my_itoa(nb);
+
+    cr_assert_str_eq(str, expected);
+    free(str);
+}
+
 Test(my_itoa, handles_full_int_range)
 {
-    cr_assert_str_eq(my_itoa(0), "0");
-    cr_assert_str_eq(my_itoa(42), "42");
-    cr_assert_str_eq(my_itoa(-5), "-5");
-    cr_assert_str_eq(my_itoa(INT_MIN), "-2147483648");
-    cr_assert_str_eq(my_itoa(INT_MAX), "2147483647");
+    check_itoa(0, "0");
+    check_itoa(42, "42");
+    check_itoa(-5, "-5");
+    check_itoa(INT_MIN, "-2147483648");
+    check_itoa(INT_MAX, "2147483647");
 }
 
 Test(my_strcmp, signed_difference)
