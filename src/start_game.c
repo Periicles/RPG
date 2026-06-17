@@ -10,6 +10,7 @@
 #include "display.h"
 #include "events.h"
 #include "raycasting_functions.h"
+#include "config.h"
 
 static bool init_keys(game_t *game)
 {
@@ -50,13 +51,13 @@ static bool init_params(game_t *game)
     if (game->params == NULL)
         return false;
     game->params[0] = (params_t){0};
-    game->params->volume = 100;
-    game->params->fps = 60;
+    game->params->volume = DEFAULT_VOLUME;
+    game->params->fps = DEFAULT_FPS;
     game->params->fullscreen = 0;
-    game->params->resolution = (sfVector2u){1920, 1080};
-    game->params->window_size = (sfVector2u){1920, 1080};
-    game->params->mode =
-        (sfVideoMode){.size = {1920, 1080}, .bitsPerPixel = 32};
+    game->params->resolution = (sfVector2u){DEFAULT_WIDTH, DEFAULT_HEIGHT};
+    game->params->window_size = (sfVector2u){DEFAULT_WIDTH, DEFAULT_HEIGHT};
+    game->params->mode = (sfVideoMode){
+        .size = {DEFAULT_WIDTH, DEFAULT_HEIGHT}, .bitsPerPixel = DEFAULT_BPP};
     return true;
 }
 

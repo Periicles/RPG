@@ -9,6 +9,7 @@
 
 #include "game.h"
 #include "network_functions.h"
+#include "config.h"
 
 static sfTcpSocket *check_connection(sfTcpSocket *server)
 {
@@ -37,7 +38,8 @@ network_t *connect_to_server(void)
     network->server = sfTcpSocket_create();
     sfTcpSocket_setBlocking(network->server, false);
     if (sfTcpSocket_connect(network->server, sfIpAddress_fromString(
-                "142.93.35.112"), 6060, sfSeconds(2)) == sfSocketError) {
+                SERVER_IP), SERVER_PORT, sfSeconds(SERVER_TIMEOUT))
+        == sfSocketError) {
         write(2, "Connection failed\n", 18);
         sfTcpSocket_destroy(network->server);
         free(network);
