@@ -7,6 +7,7 @@
 
 #include <math.h>
 #include "menu.h"
+#include "input.h"
 
 #include "game.h"
 #include "collisions.h"
@@ -26,14 +27,14 @@ static void move_player_vertical(game_t *game)
     sfVector2f pos = perso->pos;
     sfVector2f dim = {45, 50};
 
-    if (sfKeyboard_isKeyPressed(game->keys->left)
-        || sfKeyboard_isKeyPressed(game->keys->right))
+    if (is_key_held(game, game->keys->left)
+        || is_key_held(game, game->keys->right))
         speed = 2.8;
-    if (sfKeyboard_isKeyPressed(game->keys->up)
+    if (is_key_held(game, game->keys->up)
         && is_colliding(game, &(sfVector2f){pos.x, pos.y - 4}, &dim) == 0) {
         perso->pos.y -= speed;
         set_perso_move(perso, 18, 1);
-    } else if (sfKeyboard_isKeyPressed(game->keys->down)
+    } else if (is_key_held(game, game->keys->down)
         && is_colliding(game, &(sfVector2f){pos.x, pos.y + 4}, &dim) == 0) {
         perso->pos.y += speed;
         set_perso_move(perso, 0, 2);
@@ -47,14 +48,14 @@ static void move_player_horizontal(game_t *game)
     sfVector2f pos = perso->pos;
     sfVector2f dim = {45, 50};
 
-    if (sfKeyboard_isKeyPressed(game->keys->up)
-        || sfKeyboard_isKeyPressed(game->keys->down))
+    if (is_key_held(game, game->keys->up)
+        || is_key_held(game, game->keys->down))
         speed = 2.8;
-    if (sfKeyboard_isKeyPressed(game->keys->left)
+    if (is_key_held(game, game->keys->left)
         && is_colliding(game, &(sfVector2f){pos.x - 4, pos.y}, &dim) == 0) {
         perso->pos.x -= speed;
         set_perso_move(perso, 36, 3);
-    } else if (sfKeyboard_isKeyPressed(game->keys->right)
+    } else if (is_key_held(game, game->keys->right)
         && is_colliding(game, &(sfVector2f){pos.x + 4, pos.y}, &dim) == 0) {
         perso->pos.x += speed;
         set_perso_move(perso, 54, 4);

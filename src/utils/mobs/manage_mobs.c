@@ -6,6 +6,7 @@
 */
 
 #include <math.h>
+#include "input.h"
 
 #include "game.h"
 #include "mobs_functions.h"
@@ -55,7 +56,7 @@ static void reward_kill(game_t *game, mobs_t *mob)
 
 static void win_perso(game_t *game, mobs_t *mob)
 {
-    if (sfKeyboard_isKeyPressed(game->keys->attack)
+    if (is_key_held(game, game->keys->attack)
         && mob->distance_to_player < 50) {
         if (mob->combat->life > 0) {
             mob->combat->life -= 10;

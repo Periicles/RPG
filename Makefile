@@ -11,6 +11,7 @@ SRC = src/main.c \
 	src/change_map.c \
 	src/flags.c \
 	src/menu.c \
+	src/input.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
 			raycasting \

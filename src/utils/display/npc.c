@@ -6,6 +6,7 @@
 */
 
 #include <math.h>
+#include "input.h"
 
 #include "game.h"
 #include "display.h"
@@ -31,7 +32,7 @@ static void get_distance(game_t *game, int i, const sfVector2f *second_pos)
 
     game->npc[i]->distance_to_player = sqrt(pow(dx, 2) + pow(dy, 2));
     if (game->npc[i]->distance_to_player < 100
-        && sfKeyboard_isKeyPressed(game->keys->interact))
+        && is_key_held(game, game->keys->interact))
         try_interact(game, i);
 }
 

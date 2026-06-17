@@ -8,6 +8,7 @@
 #include "game.h"
 #include "display.h"
 #include "menu.h"
+#include "input.h"
 
 static int poll_dialog(game_t *game)
 {
@@ -15,6 +16,7 @@ static int poll_dialog(game_t *game)
 
     while (sfRenderWindow_pollEvent(game->window->window,
             &game->window->event)) {
+        input_handle_event(game);
         if (game->window->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window->window);
         if (game->window->event.type == sfEvtKeyPressed)

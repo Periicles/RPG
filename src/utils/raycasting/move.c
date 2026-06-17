@@ -6,6 +6,7 @@
 */
 
 #include <math.h>
+#include "input.h"
 
 #include "game.h"
 #include "raycasting_functions.h"
@@ -35,12 +36,12 @@ static void player_move_left_right(game_t *game)
     raycasting_player_t *p = game->raycasting->player;
     sfVector2f d = get_dir(game);
 
-    if (sfKeyboard_isKeyPressed(sfKeyQ)
+    if (is_key_held(game, sfKeyQ)
         && is_colliding(game, p->position.x - d.y, p->position.y - d.x) == 0) {
         p->position.x -= d.y;
         p->position.y -= d.x;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyD)
+    if (is_key_held(game, sfKeyD)
         && is_colliding(game, p->position.x + d.y, p->position.y + d.x) == 0) {
         p->position.x += d.y;
         p->position.y += d.x;
@@ -52,12 +53,12 @@ static void player_move_forward_backward(game_t *game)
     raycasting_player_t *p = game->raycasting->player;
     sfVector2f d = get_dir(game);
 
-    if (sfKeyboard_isKeyPressed(sfKeyZ)
+    if (is_key_held(game, sfKeyZ)
         && is_colliding(game, p->position.x + d.x, p->position.y - d.y) == 0) {
         p->position.x += d.x;
         p->position.y -= d.y;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyS)
+    if (is_key_held(game, sfKeyS)
         && is_colliding(game, p->position.x - d.x, p->position.y + d.y) == 0) {
         p->position.x -= d.x;
         p->position.y += d.y;
@@ -68,13 +69,13 @@ static void player_rotate(game_t *game)
 {
     raycasting_t *r = game->raycasting;
 
-    if (sfKeyboard_isKeyPressed(sfKeyLeft))
+    if (is_key_held(game, sfKeyLeft))
         r->player->direction += r->sensitivity;
-    if (sfKeyboard_isKeyPressed(sfKeyRight))
+    if (is_key_held(game, sfKeyRight))
         r->player->direction -= r->sensitivity;
-    if (sfKeyboard_isKeyPressed(sfKeyUp))
+    if (is_key_held(game, sfKeyUp))
         r->player->pitch += r->sensitivity * 5;
-    if (sfKeyboard_isKeyPressed(sfKeyDown))
+    if (is_key_held(game, sfKeyDown))
         r->player->pitch -= r->sensitivity * 5;
 }
 
@@ -83,7 +84,7 @@ void move_raycasting_player(game_t *game)
     player_rotate(game);
     player_move_forward_backward(game);
     player_move_left_right(game);
-    if (sfKeyboard_isKeyPressed(sfKeyE)) {
+    if (is_key_held(game, sfKeyE)) {
         game->is_raycasting = false;
         game->raycasting->player->position = (sfVector2f){500, 500};
     }

@@ -9,6 +9,7 @@
 
 #include "game.h"
 #include "raycasting_functions.h"
+#include "input.h"
 
 static void draw_entity(game_t *game, entity_t *entity)
 {
@@ -73,9 +74,12 @@ int raycasting(game_t *game)
 {
     int i = 0;
 
-    while (sfRenderWindow_pollEvent(game->window->window, &game->window->event))
+    while (sfRenderWindow_pollEvent(game->window->window,
+            &game->window->event)) {
+        input_handle_event(game);
         if (game->window->event.type == sfEvtClosed)
             exit_start_all(game);
+    }
     sfRenderWindow_clear(game->window->window, sfBlack);
     move_raycasting_player(game);
     for (i = 0; i < game->raycasting->nb_rays; i++)

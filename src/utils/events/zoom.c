@@ -7,12 +7,13 @@
 
 #include "game.h"
 #include "events.h"
+#include "input.h"
 
 void zoom(game_t *game)
 {
     sfVector2f pos = {0};
 
-    if (!sfKeyboard_isKeyPressed(sfKeyLControl)
+    if (!is_key_held(game, sfKeyLControl)
         || game->window->event.type != sfEvtMouseWheelScrolled)
         return;
     pos = sfView_getSize(game->window->view);

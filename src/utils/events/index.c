@@ -9,6 +9,7 @@
 
 #include "game.h"
 #include "events.h"
+#include "input.h"
 
 static void go_to_raycasting(game_t *game)
 {
@@ -31,10 +32,11 @@ void events_window(game_t *game)
     go_to_raycasting(game);
     while (sfRenderWindow_pollEvent(game->window->window,
             &game->window->event)) {
+        input_handle_event(game);
         if (game->window->event.type == sfEvtClosed)
             exit_start_all(game);
         if (game->window->event.type == sfEvtKeyPressed
-            && sfKeyboard_isKeyPressed(sfKeyEscape))
+            && game->window->event.key.code == sfKeyEscape)
             event_menu(game);
         zoom(game);
         change_item(game);
