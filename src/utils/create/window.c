@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "create.h"
+#include "config.h"
 
 void create_window(game_t *game)
 {
@@ -16,9 +17,9 @@ void create_window(game_t *game)
         game->window->title, sfClose | sfResize, sfWindowed, NULL);
     if (game->window->window == NULL)
         return;
-    game->window->view = sfView_createFromRect(
-        (sfFloatRect){.position = {0, 0}, .size = {1920, 1080}});
-    sfRenderWindow_setFramerateLimit(game->window->window, 3000);
+    game->window->view = sfView_createFromRect((sfFloatRect){
+            .position = {0, 0}, .size = {DEFAULT_WIDTH, DEFAULT_HEIGHT}});
+    sfRenderWindow_setFramerateLimit(game->window->window, FPS_CAP);
     sfRenderWindow_setVerticalSyncEnabled(game->window->window, true);
     sfRenderWindow_setView(game->window->window, game->window->view);
     game->window->song = malloc(sizeof(song_t));
