@@ -6,11 +6,11 @@
 */
 
 #include <math.h>
-#include "input.h"
 
 #include "game.h"
 #include "display.h"
 #include "menu.h"
+#include "input.h"
 
 static void try_interact(game_t *game, int i)
 {

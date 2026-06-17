@@ -6,11 +6,11 @@
 */
 
 #include <stdlib.h>
-#include "menu.h"
 
 #include "game.h"
 #include "display.h"
 #include "my_str.h"
+#include "menu.h"
 
 static void modify_quest(game_t *game)
 {

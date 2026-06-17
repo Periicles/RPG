@@ -6,10 +6,10 @@
 */
 
 #include <math.h>
-#include "input.h"
 
 #include "game.h"
 #include "raycasting_functions.h"
+#include "input.h"
 
 static int is_colliding(game_t *game, int x, int y)
 {
