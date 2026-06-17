@@ -54,6 +54,7 @@ typedef struct game_s {
     end_t *loose;
     bool is_finished;
     int nb_mob_killed;
+    bool keystate[sfKeyCount];
 } game_t;
 
 bool is_error(const char **env);
