@@ -6,11 +6,11 @@
 */
 
 #include <math.h>
-#include "input.h"
 
 #include "game.h"
 #include "mobs_functions.h"
 #include "menu.h"
+#include "input.h"
 
 static sfVector2f update_and_draw_ennemy(game_t *game, int i)
 {

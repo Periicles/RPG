@@ -6,12 +6,12 @@
 */
 
 #include <math.h>
-#include "menu.h"
-#include "input.h"
 
 #include "game.h"
 #include "collisions.h"
 #include "display.h"
+#include "menu.h"
+#include "input.h"
 
 static void set_perso_move(perso_t *perso, int rect_y, int dir)
 {
